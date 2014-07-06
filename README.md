@@ -12,9 +12,6 @@ This Function will query AD for password age. It can display information for a s
 
 Will return password age information for the user "user1"
 
-         ##-------------------------------------------------------------
-         Sample output:
-         ##-------------------------------------------------------------
          Get-PwdAge user1
              Name                 Login           AgeInDays LastSet                 
              ----                 -----           --------- -------                 
