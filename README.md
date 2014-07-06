@@ -1,4 +1,4 @@
 Get-PwdAge
 ==========
 
-PowerShell script to report password age from Active Directory
+Joe Glessner's Get-PwdAge PowerShell script - http://joeit.wordpress.com/
