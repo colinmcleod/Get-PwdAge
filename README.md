@@ -17,4 +17,4 @@ Will return password age information for the user "user1"
              ----                 -----           --------- -------                 
              Display Name         user1                   6 2/7/2007 12:36:53 PM
 
-```Get-PwdAge -All```
+```Get-PwdAge -All``` ```Get-PwdAge *```
