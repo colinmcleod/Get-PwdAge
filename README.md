@@ -11,6 +11,7 @@ This Function will query AD for password age. It can display information for a s
 ```Get-PwdAge user1```
 
 Will return password age information for the user "user1"
+
          ##-------------------------------------------------------------
          Sample output:
          ##-------------------------------------------------------------
