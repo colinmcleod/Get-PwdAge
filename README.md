@@ -15,6 +15,30 @@ Will return password age information for the user "user1"
          Get-PwdAge user1
              Name                 Login           AgeInDays LastSet                 
              ----                 -----           --------- -------                 
-             Display Name         user1                   6 2/7/2007 12:36:53 PM
+             Display Name         user1                   6 1/7/2014 12:36:53 PM
 
-```Get-PwdAge -All``` ```Get-PwdAge *```
+```Get-PwdAge user*``` ```Get-PwdAge u*```
+
+Will do a wildcard search and return any accounts that match the search.
+
+         Get-PwdAge u*
+             Name                 Login           AgeInDays LastSet                 
+             ----                 -----           --------- -------                 
+             Display Name         user1                   6 1/7/2014 12:36:53 PM
+             Display Name         user2                  17 2/6/2014 12:36:53 PM
+             Display Name         user3                  10 2/7/2014 12:36:53 PM
+             Display Name         user4                  33 2/7/2014 12:36:53 PM
+             Display Name         user5                  0  2/7/2014 12:36:53 PM
+
+```Get-PwdAge *```
+
+Will return the password age information for all accounts excluding disabled accounts.
+
+```Get-PwdAge -All```
+
+Will return the password age information for all accounts including disabled accounts.
+
+```Get-PwdAge -Disabled```
+
+Will return the password age information for all disabled accounts.
+
