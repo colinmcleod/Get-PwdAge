@@ -1,7 +1,7 @@
 Get-PwdAge
 ==========
 
-Joe Glessner's Get-PwdAge PowerShell script - http://joeit.wordpress.com/
+Based on Joe Glessner's Get-PwdAge PowerShell script - http://joeit.wordpress.com/
 
 ### Description
 This Function will query AD for password age. It can display information for a specified user, all users, disabled users only, and enabled/disabled users combined.
