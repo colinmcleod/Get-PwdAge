@@ -1,44 +1,31 @@
 Get-PwdAge
 ==========
 
-Based on Joe Glessner's Get-PwdAge PowerShell script - http://joeit.wordpress.com/
-
-### Description
-This Function will query AD for password age. It can display information for a specified user, all users, disabled users only, and enabled/disabled users combined.
-
 ### Syntax
 
-```Get-PwdAge user1```
+```Get-PwdAge username```
 
-Will return password age information for the user "user1"
+This will output the users Full Name, SamAccountName, password age in days, and the date/time when the users password was last set.
 
-         Get-PwdAge user1
-             Name                 Login           AgeInDays LastSet                 
-             ----                 -----           --------- -------                 
-             Display Name         user1                   6 1/7/2014 12:36:53 PM
+         Get-PwdAge username
+             Name                 Login           Age In Days   Last Set                 
+             ----                 -----           -----------   --------                 
+             User Name         username                     6   1/7/2014 12:36:53 PM
+            
 
-```Get-PwdAge user*``` ```Get-PwdAge u*```
 
-Will do a wildcard search and return any accounts that match the search.
+```Get-PwdAge user*```
 
-         Get-PwdAge u*
-             Name                 Login           AgeInDays LastSet                 
-             ----                 -----           --------- -------                 
-             Display Name         user1                   6 1/7/2014 12:36:53 PM
-             Display Name         user2                  17 2/6/2014 12:36:53 PM
-             Display Name         user3                  10 2/7/2014 12:36:53 PM
-             Display Name         user4                  33 2/7/2014 12:36:53 PM
-             Display Name         user5                  0  2/7/2014 12:36:53 PM
+Adding an asterisk to the username field will do a wild card search and output any accounts that match the search. For example -
+
+         Get-PwdAge Jo*
+             Name                 Login           Age In Days   Last Set                 
+             ----                 -----           -----------   --------                 
+             John Smith           johnsmith                 0   7/8/2014 10:58:38 PM
+             Joe Man              joe.man                 225   11/25/2013 4:14:09 PM
+             Jody Burnham         jodyb                    25   6/14/2014 10:05:29 AM
+             Josh Brolen          joshb                     9   6/29/2014 7:48:51 PM
 
 ```Get-PwdAge *```
 
-Will return the password age information for all accounts excluding disabled accounts.
-
-```Get-PwdAge -All```
-
-Will return the password age information for all accounts including disabled accounts.
-
-```Get-PwdAge -Disabled```
-
-Will return the password age information for all disabled accounts.
-
+Will perform a wild card search that outputs all accounts.
