@@ -53,8 +53,8 @@ function Get-PwdAge {
     #region function
 
 Get-ADUser -Filter {
-    samaccountname -like $Username 
-    -and enabled -eq "True" 
+    samaccountname -like $Username
+    -and enabled -eq "True"
     -and Name -notlike "Guest"
     } `
 `
@@ -75,4 +75,4 @@ Get-ADUser -Filter {
 
     #endregion function
 
-}   
+}
