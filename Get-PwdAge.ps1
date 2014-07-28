@@ -13,7 +13,7 @@ function Get-PwdAge {
                     Name                 Login           Age In Days   Last Set                 
                     ----                 -----           -----------   --------                 
                     User Name         username                     6   1/7/2014 12:36:53 PM
-            
+    .EXAMPLE        
         Get-PwdAge user*
 
             Adding an asterisk to the username field will do a wild card search and output any accounts that match the search. For example -
@@ -25,14 +25,13 @@ function Get-PwdAge {
                     Joe Man              joe.man                 225   11/25/2013 4:14:09 PM
                     Jody Burnham         jodyb                    25   6/14/2014 10:05:29 AM
                     Josh Brolen          joshb                     9   6/29/2014 7:48:51 PM
-
+    .EXAMPLE
         Get-PwdAge *
 
             Will perform a wild card search that outputs all accounts.
-    .EXAMPLE
-        Service accounts and undesirable accounts can be filtered from the search using the -Filter parameter. See
+
     .PARAMETER Username
-        The username to search for, no piplining.
+        The username to search for.
 #>
 
   [CmdletBinding()]             
