@@ -1,10 +1,8 @@
 function Get-PwdAge {  [CmdletBinding()]             
         Param              
            (                        
-               [Parameter(Mandatory=$false, 
-                    Position=1,                           
-                    ValueFromPipeline=$false,             
-                    ValueFromPipelineByPropertyName=$false)]             
+               [Parameter(Mandatory=$true, 
+                    Position=1)]             
                 [String]$Username
             )
 
@@ -17,7 +15,7 @@ Get-ADUser -Filter {
     -Properties pwdlastset `
 `
      | select @{
-        Name="Employee Name";expression={$_.Name}
+        Name="Full Name";expression={$_.Name}
         },@{
             Name="Login";expression={$_.SamAccountName}
         },@{
@@ -26,6 +24,6 @@ Get-ADUser -Filter {
             Name="Last Set";Expression={[DateTime]::FromFileTime($_.pwdlastset)}
         } `
 `
-    | Sort-Object -Property "Employee Name","Login","Age In Days","Last Set" `
-    | Format-Table -Property "Employee Name","Login","Age In Days","Last Set"
+| Sort-Object -Property "Full Name" `
+| Format-Table -Property "Full Name","Login","Age In Days","Last Set"
 }
