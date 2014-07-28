@@ -15,6 +15,7 @@ Get-ADUser -Filter {
     } `
 `
     -Properties pwdlastset `
+`
      | select @{
         Name="Employee Name";expression={$_.Name}
         },@{
