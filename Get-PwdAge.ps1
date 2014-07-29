@@ -5,7 +5,7 @@ function Get-PwdAge {
         .SYNOPSIS
             Function that outputs a user(s) password age and the date it was last set.
         .DESCRIPTION
-        
+
         .EXAMPLE
             Get-PwdAge username
 
@@ -15,7 +15,7 @@ function Get-PwdAge {
                         Name                 Login           Age In Days   Last Set                 
                         ----                 -----           -----------   --------                 
                         User Name         username                     6   1/7/2014 12:36:53 PM
-        .EXAMPLE        
+        .EXAMPLE
             Get-PwdAge user*
 
                 Adding an asterisk to the username field will do a wild card search and output any accounts that match the search. For example -
@@ -41,10 +41,10 @@ function Get-PwdAge {
     #region cmdletbinding
 
   [CmdletBinding()]
-        Param              
-           (                        
+        Param
+            (
                [Parameter(Mandatory=$true, 
-                        Position=1)]             
+                        Position=1)]
                 [String]$Username
             )
 
