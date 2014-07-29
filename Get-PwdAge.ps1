@@ -61,7 +61,7 @@ Get-ADUser -Filter {
     -Properties pwdlastset `
 `
      | select @{
-        Name="Full Name";expression={$_.Name}
+            Name="Full Name";expression={$_.Name}
         },@{
             Name="Login";expression={$_.SamAccountName}
         },@{
@@ -70,7 +70,7 @@ Get-ADUser -Filter {
             Name="Last Set";Expression={[DateTime]::FromFileTime($_.pwdlastset)}
         } `
 `
-| Sort-Object -Property "Full Name" `
+| Sort-Object  -Property "Full Name" `
 | Format-Table -Property "Full Name","Login","Age In Days","Last Set"
 
     #endregion function
