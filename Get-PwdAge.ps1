@@ -9,7 +9,8 @@ function Get-PwdAge {
         .EXAMPLE
             Get-PwdAge username
 
-                This will output the users Full Name, SamAccountName, password age in days, and the date/time when the users password was last set.
+                This will output the users Full Name, SamAccountName, password age in days, 
+                and the date/time when the users password was last set.
 
                     Get-PwdAge username
                         Name                 Login           Age In Days   Last Set                 
@@ -18,7 +19,8 @@ function Get-PwdAge {
         .EXAMPLE
             Get-PwdAge user*
 
-                Adding an asterisk to the username field will do a wild card search and output any accounts that match the search. For example -
+                Adding an asterisk to the username field will do a wild card search
+                and output any accounts that match the search. For example -
 
                     Get-PwdAge Jo*
                         Name                 Login           Age In Days   Last Set                 
