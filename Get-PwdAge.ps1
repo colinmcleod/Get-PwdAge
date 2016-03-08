@@ -1,6 +1,4 @@
 function Get-PwdAge {
-    #region help
-
     <#
         .SYNOPSIS
             Function that outputs a user(s) password age and the date it was last set.
@@ -38,22 +36,100 @@ function Get-PwdAge {
             The username to search for.
     #>
 
-    #endregion help
-
-    #region cmdletbinding
-
   [CmdletBinding()]
         Param
             (
                [Parameter(Mandatory=$true, 
                         Position=1)]
+                [String]$Username,
+                [String]$OutFile,
+                [String]$LogPath,
                 [String]$Username
             )
 
-    #endregion cmdletbinding
+# --- Global Variables --- #
+	
+	$logStamp = Get-Date -Format 'mm.dd.yyyy hh:mm:ss tt'
 
-    #region function
+# --- Error & Log Handling --- #
+	
+    function IsNull($object) {
 
+    if (!$object) {
+        return $true
+    }
+
+    if ($object -is [String] -and $object -eq [String]::Empty) {
+        return $true
+    }
+
+    if ($object -is [DBNull] -or $object -is [System.Management.Automation.Language.NullString]) {
+        return $true
+    }
+
+    return $false
+    
+}
+	
+function logWrite
+	{
+		Param ([string]$logstring)
+		
+		If (IsNull($LogPath) -eq $true)
+		{
+			$logFolder = "C:\logs"
+			$logFile = "Powershell_Get-PwdAge_$($date).log"
+			$LogPath = $logFolder + '\' + $logFile
+			
+			New-Item $logFolder -ItemType directory -ErrorAction SilentlyContinue
+			New-Item $LogPath -ItemType file -ErrorAction SilentlyContinue
+			
+			Add-content $LogPath -value $logstring
+		}
+		Else
+		{
+			New-Item $LogPath -ItemType file -ErrorAction SilentlyContinue
+			
+			Add-content $LogPath -value $logstring
+		}
+		
+	}
+	
+function sendMail
+	{
+	    Param ([string]$Subject)
+	    
+		If (IsNull($SMTP) -eq $true)
+		{
+			logWrite "$($logStamp): SMTP server not specified, cannot send error notification."
+		}
+		ElseIf (IsNull($To) -eq $true)
+		{
+			logWrite "$($logStamp): To address not specified, cannot send error notification."
+		}
+		Elseif (IsNull($From) -eq $true)
+		{
+			logWrite "$($logStamp): From address not specified, cannot send error notification."
+		}
+		Else
+		{
+			# --- Log this action --- #
+			
+			logWrite "$($logStamp): Email Notification"
+			logWrite "From: $($From)"
+			logWrite "To: $($To)"
+			logWrite "Subject: $($Subject)"
+			
+			$Body = Get-Content $LogPath
+			$Attachement = $LogPath
+			
+			# --- Send Message --- #
+			
+			Send-MailMessage -From $From -To $To -subject $Subject -Body $Body -Attachments $Attachment -Priority High -DeliveryNotificationOption None -smtpServer $SMTP
+		}
+	}
+	
+Try {
 Get-ADUser -Filter {
     samaccountname -like $Username
     -and enabled -eq "True"
@@ -74,7 +150,9 @@ Get-ADUser -Filter {
 `
 | Sort-Object  -Property "Full Name" `
 | Format-Table -Property "Full Name","Login","Age In Days","Last Set"
-
-    #endregion function
-
+}
+Catch {
+    
+}
+}
 }
